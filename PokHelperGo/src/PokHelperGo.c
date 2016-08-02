@@ -2,7 +2,7 @@
  ============================================================================
  Name        : PokHelperGo.c
  Author      : Maarti
- Version     :
+ Version     : 1.0
  Copyright   : 2016
  Description : Hello World in GTK+
  ============================================================================
@@ -12,55 +12,24 @@
 #include <stdlib.h>
 #include <string.h>	// strcopy, strcat
 
+// Structures :
 typedef struct entry_data
 {
 	GtkWidget *nbRoucoolEntry;
 	GtkWidget *nbBonbonEntry;
 	GtkWidget *resultLabel;
 } entry_data;
-/*typedef struct output_data
-{
-    int nbTransfert;
-    int nbEvo;
-} output_data;*/
 
 // Prototypes :
 void calcul_evo(int nbPokemon, int nbBonbon, GtkLabel *resultLabel);
 void evoluer(int *stockPokemon,int *stockBonbon, int *nbTransfert, int *nbEvo, int *fini);
+static void on_click_calculer (GtkWidget *widget, gpointer data);
 
-
-static void
-on_click_calculer (GtkWidget *widget,
-		gpointer   data)
-{
-
-
-	entry_data* ed = (entry_data*)data;
-	const gchar *nbRoucool;
-	const gchar *nbBonbon;
-	GtkLabel *resultLabel = GTK_LABEL(ed->resultLabel);
-	nbRoucool = gtk_entry_get_text (GTK_ENTRY (ed->nbRoucoolEntry));
-	nbBonbon = gtk_entry_get_text (GTK_ENTRY (ed->nbBonbonEntry));
-	g_print ("--calcul--\nNb Roucool = %s\nNb bonbons = %s\n",nbRoucool,nbBonbon);
-
-
-	int nbR = atoi((char*)nbRoucool);
-	int nbB = atoi((char*)nbBonbon);
-	calcul_evo(nbR,nbB,resultLabel);
-
-	// gtk_label_set_text ((GTK_LABEL(ed->resultLabel)  ,result);
-
-}
-
-
-int
-main (int   argc,
-		char *argv[])
-{
+// Methods :
+int main (int   argc, char *argv[]) {
 	GtkBuilder *builder;
 	GObject *window;
 	GObject *button;
-	//GObject *nbRoucoolEntry;
 	entry_data* ed = g_malloc(sizeof(*ed));
 
 	gtk_init (&argc, &argv);
@@ -73,10 +42,7 @@ main (int   argc,
 	window = gtk_builder_get_object (builder, "window");
 	g_signal_connect (window, "destroy", G_CALLBACK (gtk_main_quit), NULL);
 
-	//button = gtk_builder_get_object (builder, "button1");
-	//g_signal_connect (button, "clicked", G_CALLBACK (print_hello), NULL);
 
-	//nbRoucoolEntry = gtk_builder_get_object (builder, "nbRoucoolEntry");
 	//TODO  A CHANGER EN SPIN BUTTON
 	ed->nbRoucoolEntry = (GtkWidget*) gtk_builder_get_object (builder, "nbRoucoolEntry");
 	ed->nbBonbonEntry = (GtkWidget*) gtk_builder_get_object (builder, "nbBonbonEntry");
@@ -84,7 +50,6 @@ main (int   argc,
 
 
 	button = gtk_builder_get_object (builder, "calculer");
-	//g_signal_connect_swapped (button, "clicked", G_CALLBACK (calculer), nbRoucoolEntry);
 	g_signal_connect (button, "clicked", G_CALLBACK (on_click_calculer), (gpointer) ed);
 
 	button = gtk_builder_get_object (builder, "quit");
@@ -96,7 +61,24 @@ main (int   argc,
 	return 0;
 }
 
+// Click on "evoluer"
+static void on_click_calculer (GtkWidget *widget, gpointer data) {
+	entry_data* ed = (entry_data*)data;
+	const gchar *nbRoucool;
+	const gchar *nbBonbon;
+	GtkLabel *resultLabel = GTK_LABEL(ed->resultLabel);
+	nbRoucool = gtk_entry_get_text (GTK_ENTRY (ed->nbRoucoolEntry));
+	nbBonbon = gtk_entry_get_text (GTK_ENTRY (ed->nbBonbonEntry));
+	g_print ("--calcul--\nNb Roucool = %s\nNb bonbons = %s\n",nbRoucool,nbBonbon);
 
+
+	int nbR = atoi((char*)nbRoucool);
+	int nbB = atoi((char*)nbBonbon);
+	calcul_evo(nbR,nbB,resultLabel);
+}
+
+// Calcule le nombre de transferts nécessaire en fonction des
+// données saisies et met à jour le label passé en paramètre
 void calcul_evo(int nbPokemon, int nbBonbon, GtkLabel *resultLabel){
 	int nbEvo = nbBonbon / 12;
 	int resteBonbonApresEvo = nbBonbon % 12;
@@ -146,36 +128,10 @@ void calcul_evo(int nbPokemon, int nbBonbon, GtkLabel *resultLabel){
 		gtk_label_set_text (resultLabel, "Pas assez de Roucool.");
 	}
 
-	/*
-	if (nbEvo < nbPokemon && (restePokApresEvo+resteBonbonApresEvo)>=12 ){
-		int stockPokemon = restePokApresEvo;
-		int stockBonbon = resteBonbonApresEvo;
-		int fini = 0;
-		do {
-			g_print ("--LOG-- Evo %2d	Trsfrt %2d	Pokmn %2d	Bnbn %2d\n",nbEvo,nbTransfert,stockPokemon,stockBonbon);
-			evoluer(&stockPokemon, &stockBonbon,  &nbTransfert, &nbEvo, &fini);
-		}
-		while(fini==0);
-
-		g_print ("En transférant %d Roucool, vous pourrez en faire évoluer %d\n",nbTransfert,nbEvo);
-		snprintf(nbTrsfStr, 20,"%d",nbTransfert);
-		snprintf(nbEvoStr, 20,"%d",nbEvo);
-		strcpy(resultStr, "En transférant ");
-		strcat(resultStr, nbTrsfStr);
-		strcat(resultStr, " Roucool, \nvous pourrez en faire évoluer ");
-		strcat(resultStr, nbEvoStr);
-		strcat(resultStr, ".");
-		gtk_label_set_text (resultLabel, resultStr);
-	}else {
-		g_print ("Vous pouvez faire évoluer %d Roucool sans en transférer.\n",nbEvo);
-		snprintf(nbEvoStr, 20,"%d",nbEvo);
-		strcpy(resultStr, "Vous pouvez faire évoluer \n");
-		strcat(resultStr, nbEvoStr);
-		strcat(resultStr, " Roucool sans en transférer.");
-		gtk_label_set_text (resultLabel, resultStr);
-	}*/
 }
 
+// Tente de transférer des pokemon pour pouvoir evoluer et met à jour les stocks
+// Si non => rollback
 void evoluer(int *stockPokemon,int *stockBonbon, int *nbTransfert, int *nbEvo, int *fini){
 	// on conserve les valeurs pour pouvoir rollback
 	int nbTinit = *nbTransfert;
