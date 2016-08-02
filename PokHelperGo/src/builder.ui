@@ -19,9 +19,10 @@
         </child>
 
          <child>
-          <object id="nbRoucoolEntry" class="GtkEntry">
+          <object id="nbRoucoolEntry" class="GtkSpinButton">
             <property name="visible">True</property>
-            <property name="placeholder-text">Nb Roucool</property>
+            <property name="climb-rate">3</property>
+            <property name="width-chars">3</property>
             <property name="max-length">3</property>
           </object>
           <packing>
@@ -42,10 +43,11 @@
         </child>
 
          <child>
-          <object id="nbBonbonEntry" class="GtkEntry">
+          <object id="nbBonbonEntry" class="GtkSpinButton">
             <property name="visible">True</property>
-            <property name="placeholder-text">Nb bonbons</property>
-            <property name="max-length">5</property>
+            <property name="climb-rate">10</property>
+            <property name="width-chars">4</property>
+            <property name="max-length">4</property>
           </object>
           <packing>
             <property name="left-attach">1</property>
