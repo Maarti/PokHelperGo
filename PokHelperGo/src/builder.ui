@@ -1,0 +1,98 @@
+<interface>
+  <object id="window" class="GtkWindow">
+    <property name="visible">True</property>
+    <property name="title">Calculateur d'évolution Roucool</property>
+    <property name="border-width">10</property>
+    <child>
+      <object id="grid" class="GtkGrid">
+        <property name="visible">True</property>
+        
+        <child>
+          <object id="nbRoucoolLabel" class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="label">Nb Roucool : </property>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">0</property>
+          </packing>
+        </child>
+
+         <child>
+          <object id="nbRoucoolEntry" class="GtkEntry">
+            <property name="visible">True</property>
+            <property name="placeholder-text">Nb Roucool</property>
+            <property name="max-length">3</property>
+          </object>
+          <packing>
+            <property name="left-attach">1</property>
+            <property name="top-attach">0</property>
+          </packing>
+        </child>
+        
+        <child>
+          <object id="nbBonbonLabel" class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="label">Nb bonbons : </property>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">1</property>
+          </packing>
+        </child>
+
+         <child>
+          <object id="nbBonbonEntry" class="GtkEntry">
+            <property name="visible">True</property>
+            <property name="placeholder-text">Nb bonbons</property>
+            <property name="max-length">5</property>
+          </object>
+          <packing>
+            <property name="left-attach">1</property>
+            <property name="top-attach">1</property>
+          </packing>
+        </child>
+        
+        <child>
+          <object id="calculer" class="GtkButton">
+            <property name="visible">True</property>
+            <property name="label">Calculer</property>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">2</property>
+            <property name="width">2</property>
+          </packing>
+        </child>
+        
+          <child>
+          <object id="resultLabel" class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="label"></property>
+            <property name="lines">2</property>
+            <property name="justify">GTK_JUSTIFY_CENTER</property>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">3</property>
+            <property name="width">2</property>            
+          </packing>
+        </child>
+        
+        <child>
+          <object id="quit" class="GtkButton">
+            <property name="visible">True</property>
+            <property name="label">Quitter</property>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">4</property>
+            <property name="width">2</property>
+          </packing>
+        </child>
+      </object>
+      <packing>
+      </packing>
+    </child>
+  </object>
+</interface>
