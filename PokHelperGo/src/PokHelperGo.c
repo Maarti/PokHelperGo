@@ -123,7 +123,7 @@ void calcul_evo(int nbPokemon, int nbBonbon, GtkLabel *resultLabel){
 			strcat(resultStr, " de \nvos Roucool, pas de transert requis.");
 			gtk_label_set_text (resultLabel, resultStr);
 		}else{													// Transferts avant évolution
-			int stockPokemon = restePokApresEvo;
+			int stockPokemon = nbPokemon;
 			int stockBonbon = resteBonbonApresEvo;
 			int fini = 0;
 			do {
