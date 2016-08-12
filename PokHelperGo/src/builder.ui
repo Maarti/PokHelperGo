@@ -31,6 +31,18 @@
           </packing>
         </child>
         
+          <child>
+          <object id="roucoolImg" class="GtkImage">
+          <property name="visible">True</property>
+            <property name="file">./src/pidgey_icon.gif</property>
+          </object>
+          <packing>
+            <property name="left-attach">3</property>
+            <property name="top-attach">0</property>
+          </packing>
+        </child>
+        
+        
         <child>
           <object id="nbBonbonLabel" class="GtkLabel">
             <property name="visible">True</property>
@@ -40,7 +52,9 @@
             <property name="left-attach">0</property>
             <property name="top-attach">1</property>
           </packing>
-        </child>
+        </child> 
+       
+    
 
          <child>
           <object id="nbBonbonEntry" class="GtkSpinButton">
@@ -51,6 +65,18 @@
           </object>
           <packing>
             <property name="left-attach">1</property>
+            <property name="top-attach">1</property>
+          </packing>
+        </child>
+        
+        
+        <child>
+          <object id="nbBonbonImg" class="GtkImage">
+          <property name="visible">True</property>
+            <property name="file">./src/pidgey_candy_icon.png</property>
+          </object>
+          <packing>
+            <property name="left-attach">3</property>
             <property name="top-attach">1</property>
           </packing>
         </child>

@@ -43,11 +43,17 @@ int main (int   argc, char *argv[]) {
 	window = gtk_builder_get_object (builder, "window");
 	g_signal_connect (window, "destroy", G_CALLBACK (gtk_main_quit), NULL);
 
-
-	//On recupere les Widget TODO  A CHANGER EN SPIN BUTTON
+	// On recupere les Widgets
 	ed->nbRoucoolEntry = (GtkWidget*) gtk_builder_get_object (builder, "nbRoucoolEntry");
 	ed->nbBonbonEntry = (GtkWidget*) gtk_builder_get_object (builder, "nbBonbonEntry");
 	ed->resultLabel =  (GtkWidget*) gtk_builder_get_object (builder, "resultLabel");
+
+	// Credit Image Pidgey :
+	// http://kattling.deviantart.com/art/FREE-Bouncy-Pidgey-Icon-333607385
+
+	// Credit candy :
+	// https://github.com/OrangeeWeb/Pokemon
+	// https://www.reddit.com/r/pokemongo/comments/4ulm2k/i_made_a_pokemon_go_candy_image_generator_change/
 
 	// On associe des bornes aux Spin Buttons
 	adjustment = gtk_adjustment_new (0.0, 0.0, 750.0, 1.0, 3.0, 0.0);
@@ -70,20 +76,12 @@ int main (int   argc, char *argv[]) {
 // Click on "evoluer"
 static void on_click_calculer (GtkWidget *widget, gpointer data) {
 	entry_data* ed = (entry_data*)data;
-	//const gchar *nbRoucool;
-	//gdouble nbRoucool;
-	//const gchar *nbBonbon;
 	GtkLabel *resultLabel = GTK_LABEL(ed->resultLabel);
-	//nbRoucool = gtk_entry_get_text (GTK_ENTRY (ed->nbRoucoolEntry));
-	//nbRoucool = gtk_spin_button_get_value (GTK_SPIN_BUTTON (ed->nbRoucoolEntry));
+
 	int nbRoucool = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON(ed->nbRoucoolEntry));
-	//nbBonbon = gtk_entry_get_text (GTK_ENTRY (ed->nbBonbonEntry));
 	int nbBonbon = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON(ed->nbBonbonEntry));
-	g_print ("--calcul--\nNb Roucool = %d\nNb bonbons = %d\n",nbRoucool,nbBonbon);
+	g_print ("--calcul--\nNb Roucool = %d	-	Nb bonbons = %d\n",nbRoucool,nbBonbon);
 
-
-	//int nbR = atoi((char*)nbRoucool);
-	//int nbB = atoi((char*)nbBonbon);
 	calcul_evo(nbRoucool,nbBonbon,resultLabel);
 }
 
