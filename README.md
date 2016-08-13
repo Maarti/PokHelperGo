@@ -9,7 +9,7 @@ gcc `pkg-config gtk+-3.0 --cflags` PokHelperGo.c -o PokHelperGo `pkg-config gtk+
 
 ## Usage
 
-### Pidgey Grinding Part
+### Pidgey Grinding
 
 Enter your number of Pidgey then your number of candies then submit.
 
@@ -28,7 +28,9 @@ This is my first C program.
 ## Credits
 
 [Maarti](http://maarti.net)
+
 [Kaatling](http://kattling.deviantart.com/) for the pidgey icon.
+
 [Agne240](https://github.com/OrangeeWeb/Pokemon) for the candy icon generator.
 
 ## License
