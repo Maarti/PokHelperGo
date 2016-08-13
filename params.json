@@ -1,0 +1,6 @@
+{
+  "name": "PokHelper GO",
+  "tagline": "Helper for Pokemon GO",
+  "body": "\r\n## Installation\r\n\r\n``\r\ngcc `pkg-config gtk+-3.0 --cflags` PokHelperGo.c -o PokHelperGo `pkg-config gtk+-3.0 --libs`\r\n``\r\n\r\n## Usage\r\n\r\n### Pidgey Grinding\r\n\r\nEnter your number of Pidgey then your number of candies then submit.\r\nIt will tell you how many evolves you can do and how many transfers you need to do beforehand, so you can optimize your lucky eggs.\r\n\r\n## Screenshot\r\n\r\n![screen](myurl)\r\n\r\n## History\r\n\r\nThis is my first C program.\r\n\r\n## Credits\r\n\r\n* [Maarti](http://maarti.net)\r\n* [Kaatling](http://kattling.deviantart.com/) for the pidgey icon.\r\n* [Agne240](https://github.com/OrangeeWeb/Pokemon) for the candy icon generator.\r\n\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
