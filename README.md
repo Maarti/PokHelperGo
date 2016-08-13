@@ -27,11 +27,9 @@ This is my first C program.
 
 ## Credits
 
-[Maarti](http://maarti.net)
-
-[Kaatling](http://kattling.deviantart.com/) for the pidgey icon.
-
-[Agne240](https://github.com/OrangeeWeb/Pokemon) for the candy icon generator.
+* [Maarti](http://maarti.net)
+* [Kaatling](http://kattling.deviantart.com/) for the pidgey icon.
+* [Agne240](https://github.com/OrangeeWeb/Pokemon) for the candy icon generator.
 
 ## License
 
