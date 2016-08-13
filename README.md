@@ -1,4 +1,4 @@
-# PokHelperGo
+# PokHelperGo ![](https://github.com/Maarti/PokHelperGo/blob/master/PokHelperGo/src/pidgey_icon.gif)
 Helper for Pokemon GO
 
 ## Installation
