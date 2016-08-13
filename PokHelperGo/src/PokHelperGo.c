@@ -48,12 +48,6 @@ int main (int   argc, char *argv[]) {
 	ed->nbBonbonEntry = (GtkWidget*) gtk_builder_get_object (builder, "nbBonbonEntry");
 	ed->resultLabel =  (GtkWidget*) gtk_builder_get_object (builder, "resultLabel");
 
-	// Credit Image Pidgey :
-	// http://kattling.deviantart.com/art/FREE-Bouncy-Pidgey-Icon-333607385
-
-	// Credit candy :
-	// https://github.com/OrangeeWeb/Pokemon
-	// https://www.reddit.com/r/pokemongo/comments/4ulm2k/i_made_a_pokemon_go_candy_image_generator_change/
 
 	// On associe des bornes aux Spin Buttons
 	adjustment = gtk_adjustment_new (0.0, 0.0, 750.0, 1.0, 3.0, 0.0);
@@ -61,9 +55,9 @@ int main (int   argc, char *argv[]) {
 	adjustment = gtk_adjustment_new (0.0, 0.0, 9999.0, 1.0, 10.0, 0.0);
 	gtk_spin_button_set_adjustment (GTK_SPIN_BUTTON(ed->nbBonbonEntry), adjustment);
 
+	// On connect les callback
 	button = gtk_builder_get_object (builder, "calculer");
 	g_signal_connect (button, "clicked", G_CALLBACK (on_click_calculer), (gpointer) ed);
-
 	button = gtk_builder_get_object (builder, "quit");
 	g_signal_connect (button, "clicked", G_CALLBACK (gtk_main_quit), NULL);
 
@@ -73,14 +67,14 @@ int main (int   argc, char *argv[]) {
 	return 0;
 }
 
-// Click on "evoluer"
+// Click on "calculate"
 static void on_click_calculer (GtkWidget *widget, gpointer data) {
 	entry_data* ed = (entry_data*)data;
 	GtkLabel *resultLabel = GTK_LABEL(ed->resultLabel);
 
 	int nbRoucool = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON(ed->nbRoucoolEntry));
 	int nbBonbon = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON(ed->nbBonbonEntry));
-	g_print ("--calcul--\nNb Roucool = %d	-	Nb bonbons = %d\n",nbRoucool,nbBonbon);
+	g_print ("--calcul--\nNb pidgey = %d	-	Nb candies = %d\n",nbRoucool,nbBonbon);
 
 	calcul_evo(nbRoucool,nbBonbon,resultLabel);
 }
@@ -97,20 +91,25 @@ void calcul_evo(int nbPokemon, int nbBonbon, GtkLabel *resultLabel){
 
 	if (nbBonbon+nbPokemon>12 && nbPokemon>=1){
 
-		if(nbEvo>=nbPokemon) {									// Bonbons suffisants pour tous es pokemon
-			g_print ("Vous pouvez faire évoluer vos %d Roucool sans en transférer.\n",nbPokemon);
+		if(nbEvo>=nbPokemon) {									// Bonbons suffisants pour tous les pokemon
+			//g_print ("Vous pouvez faire évoluer vos %d Roucool sans en transférer.\n",nbPokemon);
+			g_print ("You can evolve your %d Pidgey(s) without any transfer.\n",nbPokemon);
 			snprintf(nbEvoStr, 20,"%d",nbPokemon);
-			strcpy(resultStr, "Vous pouvez faire évoluer \nvos ");
+			//strcpy(resultStr, "Vous pouvez faire évoluer \nvos ");
+			strcpy(resultStr, "You can evolve your ");
 			strcat(resultStr, nbEvoStr);
-			strcat(resultStr, " Roucool sans en transférer.");
+			//strcat(resultStr, " Roucool sans en transférer.");
+			strcat(resultStr, " Pidgey(s) \nwithout any transfer.");
 			gtk_label_set_text (resultLabel, resultStr);
 
 		}else if((restePokApresEvo+resteBonbonApresEvo)<13){	// Evolutions sans transfert
 			g_print ("Vous pouvez faire évoluer %d de vos Roucool, pas de transfert requis.\n",nbEvo);
 			snprintf(nbEvoStr, 20,"%d",nbEvo);
-			strcpy(resultStr, "Vous pouvez faire évoluer ");
+			//strcpy(resultStr, "Vous pouvez faire évoluer ");
+			strcpy(resultStr, "You can evolve ");
 			strcat(resultStr, nbEvoStr);
-			strcat(resultStr, " de \nvos Roucool, pas de transert requis.");
+			//strcat(resultStr, " de \nvos Roucool, pas de transert requis.");
+			strcat(resultStr, " of \nyour Pidgey(s), no transfer required.");
 			gtk_label_set_text (resultLabel, resultStr);
 		}else{													// Transferts avant évolution
 			int stockPokemon = nbPokemon;
@@ -124,16 +123,19 @@ void calcul_evo(int nbPokemon, int nbBonbon, GtkLabel *resultLabel){
 			g_print ("En transférant %d Roucool, vous pourrez en faire évoluer %d\n",nbTransfert,nbEvo);
 			snprintf(nbTrsfStr, 20,"%d",nbTransfert);
 			snprintf(nbEvoStr, 20,"%d",nbEvo);
-			strcpy(resultStr, "En transférant ");
+			//strcpy(resultStr, "En transférant ");
+			strcpy(resultStr, "By transferring ");
 			strcat(resultStr, nbTrsfStr);
-			strcat(resultStr, " Roucool, \nvous pourrez en faire évoluer ");
+			//strcat(resultStr, " Roucool, \nvous pourrez en faire évoluer ");
+			strcat(resultStr, " Pidgey(s), \nyou could evolve ");
 			strcat(resultStr, nbEvoStr);
 			strcat(resultStr, ".");
 			gtk_label_set_text (resultLabel, resultStr);
 		}
 
 	}else{														// Pas d'évolution possible
-		gtk_label_set_text (resultLabel, "Pas assez de Roucool.");
+		//gtk_label_set_text (resultLabel, "Pas assez de Roucool.");
+		gtk_label_set_text (resultLabel, "Not enough Pidgeys.");
 	}
 
 }
@@ -162,3 +164,11 @@ void evoluer(int *stockPokemon,int *stockBonbon, int *nbTransfert, int *nbEvo, i
 		*fini = 1;
 	}
 }
+
+// Credit Pidgey icon :
+// http://kattling.deviantart.com/art/FREE-Bouncy-Pidgey-Icon-333607385
+
+// Credit candy icon :
+// https://github.com/OrangeeWeb/Pokemon
+// https://www.reddit.com/r/pokemongo/comments/4ulm2k/i_made_a_pokemon_go_candy_image_generator_change/
+
